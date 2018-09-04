@@ -14,12 +14,16 @@ LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
 
 CFLAGS+=-DRPI_NO_X -Os -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176jzf-s
 
+CFLAGSDBG=-DRPI_NO_X
+
 else ifeq ($(shell uname -m),armv7l)
 INCDIR=-I./Common -I$(SDKSTAGE)/opt/vc/include -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux
 
 LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
 
 CFLAGS+=-DRPI_NO_X -Os -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7 
+
+CFLAGSDBG=-DRPI_NO_X
 
 else
 
@@ -28,6 +32,8 @@ INCDIR=-I./Common
 LIBS=-lGLESv2 -lEGL -lm -lX11
 
 CFLAGS+= 
+
+CFLAGSDBG= 
 
 endif
 
@@ -54,5 +60,5 @@ clean:
 	gcc $(CFLAGS) ${COMMONSRC} ${CH02SRC} -o ${CH02DST} ${INCDIR} ${LIBS}
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
-	tcc ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS}
+	tcc ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
 

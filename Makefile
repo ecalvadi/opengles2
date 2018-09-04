@@ -39,14 +39,20 @@ COMMONHRD=esUtil.h
 
 CH02SRC=./Chapter_2/Hello_Triangle/Hello_Triangle.c
 CH02DST=./bin/CH02_HelloTriangle
+CH02DSTDBG=./bin/CH02_HelloTriangle_dbg
 
 default: all
 
 all: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle 
+
+debug: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg
 
 clean:
 	find . -name "CH??_*" | xargs rm -f
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
 	gcc $(CFLAGS) ${COMMONSRC} ${CH02SRC} -o ${CH02DST} ${INCDIR} ${LIBS}
+
+./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
+	tcc ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS}
 

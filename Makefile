@@ -14,7 +14,7 @@ LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
 
 CFLAGS+=-DRPI_NO_X -Os -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176jzf-s
 
-CFLAGSDBG=-DRPI_NO_X
+CFLAGSDBG=-DRPI_NO_X -w
 
 else ifeq ($(shell uname -m),armv7l)
 INCDIR=-I./Common -I$(SDKSTAGE)/opt/vc/include -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux
@@ -23,7 +23,7 @@ LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
 
 CFLAGS+=-DRPI_NO_X -Os -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7 
 
-CFLAGSDBG=-DRPI_NO_X
+CFLAGSDBG=-DRPI_NO_X -w
 
 else
 

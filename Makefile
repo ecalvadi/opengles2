@@ -31,7 +31,7 @@ INCDIR=-I./Common
 
 LIBS=-lGLESv2 -lEGL -lm -lX11
 
-CFLAGS+= 
+CFLAGS+=-O2 -march=native -mtune=native 
 
 CFLAGSDBG= 
 
@@ -47,9 +47,11 @@ CH02SRC=./Chapter_2/Hello_Triangle/Hello_Triangle.c
 CH02DST=./bin/CH02_HelloTriangle
 CH02DSTDBG=./bin/CH02_HelloTriangle_dbg
 
-default: all
+default: debug
 
-all: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle 
+all: release
+
+release: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle 
 
 debug: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg
 

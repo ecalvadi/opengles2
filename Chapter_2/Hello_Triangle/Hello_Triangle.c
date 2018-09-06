@@ -90,7 +90,7 @@ int Init ( ESContext *esContext )
       "}                            \n";
    
   GLbyte fShaderStr[] =  
-      "precision mediump float;\n"\
+      "precision mediump float;\n"
       "void main()                                  \n"
       "{                                            \n"
       "  gl_FragColor = vec4 ( 1.0, 0.0, 0.0, 1.0 );\n"

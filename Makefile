@@ -47,20 +47,33 @@ CH02SRC=./Chapter_2/Hello_Triangle/Hello_Triangle.c
 CH02DST=./bin/CH02_HelloTriangle
 CH02DSTDBG=./bin/CH02_HelloTriangle_dbg
 
+DM01SRC=./demos/01_many_textures.c
+DM01DST=./bin/DM01_ManyTextures
+DM01DSTDBG=./bin/DM01_ManyTextures_dbg
+
 default: debug
 
 all: release
 
-release: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle 
+release: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle \
+		 ./demos/01_many_textures
 
-debug: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg
+debug: ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg \
+		./demos/01_many_textures-dbg
 
 clean:
-	find . -name "CH??_*" | xargs rm -f
+	find . -name "CH??_*" | xargs rm -f 
+	find . -name "DM??_*" | xargs rm -f 
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
 	gcc $(CFLAGS) ${COMMONSRC} ${CH02SRC} -o ${CH02DST} ${INCDIR} ${LIBS}
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
 	tcc ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
+
+./demos/01_many_textures: ${COMMONSRC} ${COMMONHDR} ${DM01SRC}
+	gcc $(CFLAGS) ${COMMONSRC} ${DM01SRC} -o ${DM01DST} ${INCDIR} ${LIBS}
+
+./demos/01_many_textures-dbg: ${COMMONSRC} ${COMMONHDR} ${DM01SRC}
+	tcc ${COMMONSRC} ${DM01SRC} -o ${DM01DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
 

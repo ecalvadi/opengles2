@@ -119,6 +119,9 @@ void Update ( ESContext *esContext, float deltaTime)
 {
   UserData *userData = (UserData*) esContext->userData;
 
+  // Delete texture object to prevent Memory Leaks
+  glDeleteTextures ( 1, &userData->textureId );
+
   // Load the texture
   userData->textureId = CreateSimpleTexture2D ();
 }

@@ -4,7 +4,7 @@ This repository contains examples from the book "OpenGL(R) ES 2.0 Programming Gu
 
 ## How to build the examples
 
-To build the examples the following packages are required on GNU/Linuc PC:
+To build the examples the following packages are required on GNU/Linux PC:
 
  - gcc
  - make

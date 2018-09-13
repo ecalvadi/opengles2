@@ -3,8 +3,6 @@
 # If cross-compiling, you may wish to set the following environment variable to the root location of 
 # your 'sdk'
 # SDKSTAGE=/home/foo/raspberrypi
-# Raspberry pi 2 and 3 are de same armv7l in cpu model, but raspberry pi2 are Model 5 and pi3 are model 4
-# implement lscpu | grep Model: | cut -c24
 
 ifeq ($(shell uname -m),armv6l)
 
@@ -17,13 +15,24 @@ CFLAGS+=-DRPI_NO_X -Os -mfpu=vfp -mfloat-abi=hard -march=armv6zk -mtune=arm1176j
 CFLAGSDBG=-DRPI_NO_X -w
 
 else ifeq ($(shell uname -m),armv7l)
-INCDIR=-I./Common -I$(SDKSTAGE)/opt/vc/include -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux
+	ifeq ($(shell lscpu | grep Model: | cut -c24),4)
+		INCDIR=-I./Common -I$(SDKSTAGE)/opt/vc/include -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux
+		
+		LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
 
-LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
+		CFLAGS+=-DRPI_NO_X -Os -mcpu=cortex-a53 -mfloat-abi=hard -mfpu=neon-fp-armv8 -mneon-for-64bits -mtune=cortex-a53 
 
-CFLAGS+=-DRPI_NO_X -Os -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7 
+		CFLAGSDBG=-DRPI_NO_X -w
 
-CFLAGSDBG=-DRPI_NO_X -w
+	else
+		INCDIR=-I./Common -I$(SDKSTAGE)/opt/vc/include -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux
+
+		LIBS=-lbrcmEGL -lbrcmGLESv2 -lm -lbcm_host -L$(SDKSTAGE)/opt/vc/lib
+
+		CFLAGS+=-DRPI_NO_X -Os -mfpu=neon-vfpv4 -mfloat-abi=hard -march=armv7-a -mtune=cortex-a7 
+
+		CFLAGSDBG=-DRPI_NO_X -w
+	endif
 
 else
 

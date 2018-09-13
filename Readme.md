@@ -1,6 +1,6 @@
 # OpenGL ES 2.0
 
-This repository contains examples from the book "OpenGL(R) ES 2.0 Programming Guide", adapted to Run on Raspberry Pi 1, 2 and GNU/Linux PC (32 and 64 bits).
+This repository contains examples from the book "OpenGL(R) ES 2.0 Programming Guide", adapted to Run on Raspberry Pi 1, 2, 3 and GNU/Linux PC (32 and 64 bits).
 
 ## How to build the examples
 
@@ -17,7 +17,7 @@ To build the examples the following packages are required on GNU/Linux PC:
 sudo apt install tcc git libgles2-mesa-dev build-essential make gcc
 ~~~
 
-In case to build on Raspberry Pi (1,2), only need the following packages:
+In case to build on Raspberry Pi (1,2,3), only need the following packages:
 
  - tcc
  - git

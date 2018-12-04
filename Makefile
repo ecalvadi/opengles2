@@ -1,7 +1,7 @@
 # Straight forward Makefile to compile all examples in a row
 
-# If cross-compiling, you may wish to set the following environment variable to the root location of 
-# your 'sdk'
+# If cross-compiling, you may wish to set the following environment variable 
+# to the root location of your 'sdk'
 # SDKSTAGE=/home/foo/raspberrypi
 
 ifeq ($(shell uname -m),armv6l)
@@ -75,14 +75,14 @@ clean:
 	find . -name "DM??_*" | xargs rm -f 
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
-	gcc $(CFLAGS) ${COMMONSRC} ${CH02SRC} -o ${CH02DST} ${INCDIR} ${LIBS}
+	gcc -s $(CFLAGS) ${COMMONSRC} ${CH02SRC} -o ${CH02DST} ${INCDIR} ${LIBS}
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
-	tcc ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
+	tcc -g ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
 
 ./demos/01_many_textures: ${COMMONSRC} ${COMMONHDR} ${DM01SRC}
-	gcc $(CFLAGS) ${COMMONSRC} ${DM01SRC} -o ${DM01DST} ${INCDIR} ${LIBS}
+	gcc -s $(CFLAGS) ${COMMONSRC} ${DM01SRC} -o ${DM01DST} ${INCDIR} ${LIBS}
 
 ./demos/01_many_textures-dbg: ${COMMONSRC} ${COMMONHDR} ${DM01SRC}
-	tcc ${COMMONSRC} ${DM01SRC} -o ${DM01DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
+	tcc -g ${COMMONSRC} ${DM01SRC} -o ${DM01DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
 

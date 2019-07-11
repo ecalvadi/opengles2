@@ -78,11 +78,11 @@ clean:
 	gcc -s $(CFLAGS) ${COMMONSRC} ${CH02SRC} -o ${CH02DST} ${INCDIR} ${LIBS}
 
 ./Chapter_2/Hello_Triangle/CH02_HelloTriangle-dbg: ${COMMONSRC} ${COMMONHDR} ${CH02SRC}
-	tcc -g ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
+	tcc -b ${COMMONSRC} ${CH02SRC} -o ${CH02DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
 
 ./demos/01_many_textures: ${COMMONSRC} ${COMMONHDR} ${DM01SRC}
 	gcc -s $(CFLAGS) ${COMMONSRC} ${DM01SRC} -o ${DM01DST} ${INCDIR} ${LIBS}
 
 ./demos/01_many_textures-dbg: ${COMMONSRC} ${COMMONHDR} ${DM01SRC}
-	tcc -g ${COMMONSRC} ${DM01SRC} -o ${DM01DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
+	tcc -b ${COMMONSRC} ${DM01SRC} -o ${DM01DSTDBG} ${INCDIR} ${LIBS} ${CFLAGSDBG} 
 
